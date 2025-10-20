@@ -20,4 +20,11 @@ Add to your MCP client configuration:
 }
 ```
 
+### Environment Variables
+
+- `SKILL_FOLDER`: Path to folder containing skill markdown files (optional, defaults to `skills`)
+- `MODE`: Operating mode (optional, defaults to `system_prompt`)
+  - `system_prompt`: Include skill information in MCP instructions
+  - `tool`: Register skills as MCP tools
+
 ## [CHANGELOG](./CHANGELOG.md)

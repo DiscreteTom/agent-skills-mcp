@@ -54,7 +54,9 @@ def _parse_markdown_file(
         logger=logger,
     )
 
-    return SkillData(name, description, post.content)
+    relative_path = md_file.relative_to(folder)
+
+    return SkillData(name, description, post.content, relative_path)
 
 
 def scan_skills(

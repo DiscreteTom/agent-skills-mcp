@@ -23,7 +23,7 @@ def test_build_system_prompt_instructions():
 
     result = _build_system_prompt_instructions(iter(skills), skill_folder)
 
-    assert "Here are the discovered skills:" in result
+    assert "This MCP server is just a loader of skills" in result
     assert "## skill1" in result
     assert "Description 1" in result
     assert "Path: /base/skill1.md" in result
@@ -58,7 +58,7 @@ def test_create_mcp_server_system_prompt_mode(mock_fastmcp):
     mock_fastmcp.assert_called_once()
     call_args = mock_fastmcp.call_args
     assert call_args[1]["name"] == "agent-skills-mcp"
-    assert "Here are the discovered skills:" in call_args[1]["instructions"]
+    assert "This MCP server is just a loader of skills" in call_args[1]["instructions"]
     assert result == mock_mcp
 
 

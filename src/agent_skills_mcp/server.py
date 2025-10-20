@@ -12,7 +12,16 @@ def _build_system_prompt_instructions(
     skills: Iterator[SkillData], skill_folder: Path
 ) -> str:
     """Build instructions for system prompt mode."""
-    instructions = "Here are the discovered skills:\n"
+
+    instructions = """
+This MCP server is just a loader of skills. 
+The loading is completed.
+
+Here are the discovered skills and their brief description. 
+Read the corresponding SKILL.md file to get familiar with their details:
+
+"""
+
     for skill_data in skills:
         full_path = skill_folder / skill_data.relative_path
         instructions += f"""

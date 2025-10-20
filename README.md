@@ -5,6 +5,8 @@
 
 ## Usage
 
+[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=skills&config=eyJjb21tYW5kIjoidXZ4IGFnZW50LXNraWxscy1tY3AifQ%3D%3D)
+
 Add to your MCP client configuration:
 
 ```json

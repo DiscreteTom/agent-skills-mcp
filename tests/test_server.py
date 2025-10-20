@@ -9,6 +9,7 @@ from agent_skills_mcp.server import (
     _build_system_prompt_instructions,
     _format_tool_name,
     _format_tool_description,
+    _register_tools,
     create_mcp_server,
 )
 
@@ -104,3 +105,27 @@ desc
     # The tool decorator should have been called with a function
     tool_func = mock_tool_decorator.call_args[0][0]
     assert tool_func() == "test_content"
+
+
+def test_register_tools():
+    """Test _register_tools function directly."""
+    mock_mcp = Mock()
+    mock_tool_decorator = Mock()
+    mock_mcp.tool.return_value = mock_tool_decorator
+
+    skills = [
+        SkillData("skill1", "desc1", "content1", Path("skill1.md")),
+        SkillData("skill2", "desc2", "content2", Path("skill2.md")),
+    ]
+    skill_folder = Path("test_folder")
+
+    _register_tools(mock_mcp, iter(skills), skill_folder)
+
+    # Should have called tool decorator twice
+    assert mock_mcp.tool.call_count == 2
+
+    # Check first tool registration
+    first_call = mock_mcp.tool.call_args_list[0]
+    assert first_call[1]["name"] == "get_skill_skill1"
+    assert "test_folder/skill1.md" in first_call[1]["description"]
+    assert "desc1" in first_call[1]["description"]

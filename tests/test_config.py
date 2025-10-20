@@ -44,3 +44,15 @@ def test_config_from_env_system_prompt_mode():
     with patch.dict(os.environ, {"MODE": "system_prompt"}):
         config = Config.from_env()
         assert config.mode == Mode.SYSTEM_PROMPT
+
+
+def test_config_from_env_invalid_mode_error_message():
+    """Test Config.from_env with invalid mode shows all valid modes."""
+    with patch.dict(os.environ, {"MODE": "bad_mode"}):
+        with pytest.raises(ValueError) as exc_info:
+            Config.from_env()
+
+        error_msg = str(exc_info.value)
+        assert "Invalid MODE value: bad_mode" in error_msg
+        assert "tool" in error_msg
+        assert "system_prompt" in error_msg

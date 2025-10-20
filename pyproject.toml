@@ -1,7 +1,7 @@
 [project]
 name = "agent-skills-mcp"
 version = "0.1.0"
-description = "Load agent skills as MCP tools"
+description = "Load Agent Skills for your agents"
 readme = "README.md"
 requires-python = ">=3.13"
 authors = [
@@ -50,5 +50,4 @@ dev = [
     "ruff>=0.13.2",
     "pytest>=8.0.0",
     "pytest-cov>=6.0.0",
-    "pytest-asyncio>=1.2.0",
 ]

@@ -1,6 +1,7 @@
 """Main entry point for the MCP server."""
 
 from fastmcp import FastMCP
+from pathlib import Path
 from typing import List
 
 from .file.scan import scan_skills
@@ -8,14 +9,17 @@ from .config import Config, Mode
 from .model import SkillData
 
 
-def build_system_prompt_instructions(skills: List[SkillData]) -> str:
+def build_system_prompt_instructions(
+    skills: List[SkillData], skill_folder: Path
+) -> str:
     """Build instructions for system prompt mode."""
     instructions = "Here are the discovered skills:\n"
     for skill_data in skills:
+        full_path = skill_folder / skill_data.relative_path
         instructions += f"""
 ## {skill_data.name}
 
-> Path: {skill_data.relative_path}
+> Path: {full_path}
 
 {skill_data.description}
 
@@ -51,7 +55,7 @@ def main():
     skills = list(scan_skills(config.skill_folder))
 
     instructions = (
-        build_system_prompt_instructions(skills)
+        build_system_prompt_instructions(skills, config.skill_folder)
         if config.mode == Mode.SYSTEM_PROMPT
         else ""
     )

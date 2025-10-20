@@ -35,6 +35,8 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.sdist]
 exclude = [
+  "/.github",
+  "/tests",
   "/.pre-commit-config.yaml",
   "/.python-version", 
   "/pyrightconfig.json",

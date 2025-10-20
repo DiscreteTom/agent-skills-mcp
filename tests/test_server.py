@@ -10,6 +10,7 @@ from agent_skills_mcp.server import (
     _format_tool_name,
     _format_tool_description,
     _register_tools,
+    _register_tool,
     create_mcp_server,
 )
 
@@ -129,3 +130,67 @@ def test_register_tools():
     assert first_call[1]["name"] == "get_skill_skill1"
     assert "test_folder/skill1.md" in first_call[1]["description"]
     assert "desc1" in first_call[1]["description"]
+
+
+def test_register_tools_multiple_tools_content_isolation():
+    """Test that multiple tools return their own content, not the last tool's content."""
+    mock_mcp = Mock()
+
+    # Store the actual tool functions that get registered
+    registered_tools = []
+
+    def mock_tool_decorator(name, description):
+        def decorator(func):
+            registered_tools.append((name, description, func))
+            return func
+
+        return decorator
+
+    mock_mcp.tool.side_effect = mock_tool_decorator
+
+    skills = [
+        SkillData("skill1", "desc1", "content1", Path("skill1.md")),
+        SkillData("skill2", "desc2", "content2", Path("skill2.md")),
+    ]
+    skill_folder = Path("test_folder")
+
+    _register_tools(mock_mcp, iter(skills), skill_folder)
+
+    # Should have registered 2 tools
+    assert len(registered_tools) == 2
+
+    # Check that each tool returns its own content
+    tool1_name, tool1_desc, tool1_func = registered_tools[0]
+    tool2_name, tool2_desc, tool2_func = registered_tools[1]
+
+    assert tool1_name == "get_skill_skill1"
+    assert tool2_name == "get_skill_skill2"
+
+    # This is the critical test - each tool should return its own content
+    assert tool1_func() == "content1"
+    assert tool2_func() == "content2"
+
+
+def test_register_tool():
+    """Test _register_tool function directly."""
+    mock_mcp = Mock()
+    mock_tool_decorator = Mock()
+
+    def mock_tool_func(name, description):
+        def decorator(func):
+            mock_tool_decorator(name, description, func)
+            return func
+
+        return decorator
+
+    mock_mcp.tool.side_effect = mock_tool_func
+
+    _register_tool(mock_mcp, "test_tool", "Test description", "test_content")
+
+    # Verify tool was registered with correct parameters
+    mock_tool_decorator.assert_called_once()
+    name, description, func = mock_tool_decorator.call_args[0]
+
+    assert name == "test_tool"
+    assert description == "Test description"
+    assert func() == "test_content"

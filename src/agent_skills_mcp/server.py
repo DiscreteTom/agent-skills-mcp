@@ -40,18 +40,23 @@ def _format_tool_name(skill_name: str) -> str:
     return f"get_skill_{skill_name}"
 
 
-def _format_tool_description(skill_description: str) -> str:
+def _format_tool_description(skill_description: str, skill_path: Path) -> str:
     """Format tool description for skill."""
-    return skill_description
+    return f"""Returns the content of the skill file at: {skill_path}
+
+## Skill Description
+{skill_description}
+"""
 
 
-def _register_tools(mcp: FastMCP, skills: Iterator[SkillData]):
+def _register_tools(mcp: FastMCP, skills: Iterator[SkillData], skill_folder: Path):
     """Register tools for each skill."""
     for skill_data in skills:
+        full_path = skill_folder / skill_data.relative_path
 
         @mcp.tool(
             name=_format_tool_name(skill_data.name),
-            description=_format_tool_description(skill_data.description),
+            description=_format_tool_description(skill_data.description, full_path),
         )
         def _tool() -> str:
             return skill_data.content
@@ -70,6 +75,6 @@ def create_mcp_server(config: Config, skills: Iterator[SkillData]) -> FastMCP:
             name="agent-skills-mcp",
             instructions="",
         )
-        _register_tools(mcp, skills)
+        _register_tools(mcp, skills, config.skill_folder)
 
     return mcp

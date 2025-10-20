@@ -40,8 +40,16 @@ def test_format_tool_name():
 
 def test_format_tool_description():
     """Test tool description formatting."""
-    assert _format_tool_description("Test description") == "Test description"
-    assert _format_tool_description("") == ""
+    from pathlib import Path
+
+    expected = """Returns the content of the skill file at: /test/path.md
+
+## Skill Description
+Test description
+"""
+    assert (
+        _format_tool_description("Test description", Path("/test/path.md")) == expected
+    )
 
 
 @patch("agent_skills_mcp.server.FastMCP")
@@ -85,7 +93,12 @@ def test_create_mcp_server_tool_mode(mock_fastmcp):
     mock_mcp.tool.assert_called_once()
     tool_call_args = mock_mcp.tool.call_args
     assert tool_call_args[1]["name"] == "get_skill_test"
-    assert tool_call_args[1]["description"] == "desc"
+    expected_desc = """Returns the content of the skill file at: skills/test.md
+
+## Skill Description
+desc
+"""
+    assert tool_call_args[1]["description"] == expected_desc
 
     # Test that the tool function returns the correct content
     # The tool decorator should have been called with a function

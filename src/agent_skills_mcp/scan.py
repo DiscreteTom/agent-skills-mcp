@@ -3,8 +3,8 @@
 import frontmatter
 from pathlib import Path
 from typing import Iterator
-from ..model import SkillData
-from ..interfaces import (
+from .model import SkillData
+from .interfaces import (
     FileSystemInterface,
     DefaultFileSystem,
     LoggerInterface,

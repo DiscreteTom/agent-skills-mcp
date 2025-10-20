@@ -4,7 +4,7 @@ from fastmcp import FastMCP
 from pathlib import Path
 from typing import List
 
-from .file.scan import scan_skills
+from .scan import scan_skills
 from .config import Config, Mode
 from .model import SkillData
 

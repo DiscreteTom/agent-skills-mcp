@@ -1,7 +1,7 @@
 """Tests for file.scan module."""
 
 from pathlib import Path
-from agent_skills_mcp.file.scan import scan_skills, _parse_markdown_file
+from agent_skills_mcp.scan import scan_skills, _parse_markdown_file
 
 
 class MockFileSystem:

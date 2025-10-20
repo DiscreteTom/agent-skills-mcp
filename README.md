@@ -5,6 +5,8 @@
 
 ## Usage
 
+### Installation
+
 [![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=skills&config=eyJjb21tYW5kIjoidXZ4IGFnZW50LXNraWxscy1tY3AifQ%3D%3D)
 
 Add to your MCP client configuration:
@@ -20,11 +22,14 @@ Add to your MCP client configuration:
 }
 ```
 
+### Modes
+
+- `system_prompt`: Include skill information in MCP instructions (recommended if your agent regards MCP server instructions)
+- `tool`: Register skills as MCP tools (fallback mode since many agents ignore MCP server instructions)
+
 ### Environment Variables
 
 - `SKILL_FOLDER`: Path to folder containing skill markdown files (optional, defaults to `skills`)
 - `MODE`: Operating mode (optional, defaults to `tool`)
-  - `system_prompt`: Include skill information in MCP instructions (recommended if your agent regards MCP server instructions)
-  - `tool`: Register skills as MCP tools (fallback mode since many agents ignore MCP server instructions)
 
 ## [CHANGELOG](./CHANGELOG.md)

@@ -7,18 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2025-10-20
+
 ### Added
 
 - Configuration system with environment variables `SKILL_FOLDER` and `MODE`
 - System prompt mode that includes skill information in MCP instructions
-- Relative path tracking for skill files
 - Configurable skill folder path (defaults to `skills`)
 
-## 0.1.0 - 2025-10-20
+## [0.1.0] - 2025-10-20
 
 ### Added
 
 - Load skill files as MCP tools.
 
-[unreleased]: https://github.com/DiscreteTom/agent-skills-mcp/compare/v0.1.0...HEAD
+[unreleased]: https://github.com/DiscreteTom/agent-skills-mcp/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/DiscreteTom/agent-skills-mcp/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/DiscreteTom/agent-skills-mcp/releases/tag/v0.1.0

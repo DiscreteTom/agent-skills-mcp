@@ -2,15 +2,14 @@
 
 from fastmcp import FastMCP
 from pathlib import Path
-from typing import List
+from typing import Iterator
 
-from .scan import scan_skills
 from .config import Config, Mode
 from .model import SkillData
 
 
 def _build_system_prompt_instructions(
-    skills: List[SkillData], skill_folder: Path
+    skills: Iterator[SkillData], skill_folder: Path
 ) -> str:
     """Build instructions for system prompt mode."""
     instructions = "Here are the discovered skills:\n"
@@ -37,7 +36,7 @@ def _format_tool_description(skill_description: str) -> str:
     return skill_description
 
 
-def _register_tools(mcp: FastMCP, skills: List[SkillData]):
+def _register_tools(mcp: FastMCP, skills: Iterator[SkillData]):
     """Register tools for each skill."""
     for skill_data in skills:
 
@@ -49,22 +48,19 @@ def _register_tools(mcp: FastMCP, skills: List[SkillData]):
             return skill_data.content
 
 
-def create_mcp_server(config: Config) -> FastMCP:
+def create_mcp_server(config: Config, skills: Iterator[SkillData]) -> FastMCP:
     """Create and configure MCP server based on config."""
-    skills = list(scan_skills(config.skill_folder))
-
-    instructions = (
-        _build_system_prompt_instructions(skills, config.skill_folder)
-        if config.mode == Mode.SYSTEM_PROMPT
-        else ""
-    )
-
-    mcp = FastMCP(
-        name="agent-skills-mcp",
-        instructions=instructions,
-    )
-
-    if config.mode == Mode.TOOL:
+    if config.mode == Mode.SYSTEM_PROMPT:
+        instructions = _build_system_prompt_instructions(skills, config.skill_folder)
+        mcp = FastMCP(
+            name="agent-skills-mcp",
+            instructions=instructions,
+        )
+    else:
+        mcp = FastMCP(
+            name="agent-skills-mcp",
+            instructions="",
+        )
         _register_tools(mcp, skills)
 
     return mcp

@@ -1,4 +1,4 @@
-"""Local file-based prompt loader."""
+"""Local file-based skill loader."""
 
 import frontmatter
 from pathlib import Path
@@ -40,7 +40,7 @@ def _parse_markdown_file(
     *,
     logger: LoggerInterface,
 ) -> SkillData:
-    """Parse a single markdown file into PromptData."""
+    """Parse a single markdown file into SkillData."""
     post = frontmatter.loads(content)
 
     name = _extract_string_field(
@@ -69,12 +69,12 @@ def scan_skills(
     Scan folder recursively for markdown files.
 
     Args:
-        folder_path: Path to folder to scan
+        folder: Path to folder to scan
         fs: File system interface for file operations
         logger: Logger interface for warning messages
 
     Yields:
-        PromptData for each markdown file
+        SkillData for each markdown file
     """
     if not fs.exists(folder) or not fs.is_dir(folder):
         logger.warning(
@@ -85,8 +85,8 @@ def scan_skills(
     for md_file in fs.glob_skills(folder):
         try:
             content = fs.read_text(md_file)
-            prompt_data = _parse_markdown_file(md_file, folder, content, logger=logger)
-            yield prompt_data
+            skill_data = _parse_markdown_file(md_file, folder, content, logger=logger)
+            yield skill_data
         except Exception as e:
             logger.warning(f"failed to process {md_file}: {e}")
             continue

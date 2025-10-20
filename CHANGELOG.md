@@ -14,10 +14,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Relative path tracking for skill files
 - Configurable skill folder path (defaults to `skills`)
 
-### Changed
-
-- **BREAKING**: Default mode is now `system_prompt` instead of `tool` mode
-
 ## 0.1.0 - 2025-10-20
 
 ### Added

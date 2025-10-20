@@ -20,7 +20,7 @@ def test_config_from_env_defaults():
         config = Config.from_env()
 
         assert config.skill_folder == Path("skills")
-        assert config.mode == Mode.SYSTEM_PROMPT
+        assert config.mode == Mode.TOOL
 
 
 def test_config_from_env_custom_values():

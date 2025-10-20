@@ -26,7 +26,7 @@ class Config:
         skill_folder_str = os.getenv("SKILL_FOLDER", "skills")
         skill_folder = Path(skill_folder_str)
 
-        mode_str = os.getenv("MODE", "system_prompt")
+        mode_str = os.getenv("MODE", "tool")
         try:
             mode = Mode(mode_str)
         except ValueError:

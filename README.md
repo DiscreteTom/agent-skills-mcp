@@ -7,6 +7,8 @@
 
 ### Installation
 
+[![Add to Kiro](https://kiro.dev/images/add-to-kiro.svg)](kiro://kiro.mcp/add?name=skills&config=%7B%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22agent-skills-mcp%22%5D%2C%22env%22%3A%7B%22SKILL_FOLDER%22%3A%22skills%22%2C%22MODE%22%3A%22tool%22%7D%7D)
+
 Add to your MCP client configuration:
 
 ```json

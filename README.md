@@ -12,16 +12,16 @@
 <summary><code>uvx agent-skills-mcp --help</code></summary>
 
 ```sh
-Usage: agent-skills-mcp [OPTIONS]
+ Usage: agent-skills-mcp [OPTIONS]
 
-  Agent Skills MCP - Load Agent Skills for your agents
+ Agent Skills MCP - Load Agent Skills for your agents
 
-Options:
-  --skill-folder TEXT          Path to folder containing skill markdown files
-                               \[env var: SKILL_FOLDER; default: skills]
-  --mode [tool|system_prompt]  Operating mode  \[env var: MODE; default: tool]
-  --version                    Show version and exit
-  --help                       Show this message and exit.
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --skill-folder        TEXT                  Path to folder containing skill markdown files [env var: SKILL_FOLDER] [default: skills] │
+│ --mode                [tool|system_prompt]  Operating mode [env var: MODE] [default: tool]                                           │
+│ --version                                   Show version and exit                                                                    │
+│ --help                                      Show this message and exit.                                                              │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
 </details>

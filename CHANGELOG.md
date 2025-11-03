@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3] - 2025-11-03
+
 ### Added
 
 - CLI interface with typer for command-line argument support
@@ -43,7 +45,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Load skill files as MCP tools.
 
-[unreleased]: https://github.com/DiscreteTom/agent-skills-mcp/compare/v0.1.2...HEAD
+[unreleased]: https://github.com/DiscreteTom/agent-skills-mcp/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/DiscreteTom/agent-skills-mcp/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/DiscreteTom/agent-skills-mcp/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/DiscreteTom/agent-skills-mcp/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/DiscreteTom/agent-skills-mcp/releases/tag/v0.1.0

@@ -4,7 +4,7 @@ from fastmcp import FastMCP
 from pathlib import Path
 from typing import Iterator
 
-from .config import Config, Mode
+from .enums import Mode
 from .model import SkillData
 
 
@@ -70,10 +70,12 @@ def _register_tools(mcp: FastMCP, skills: Iterator[SkillData], skill_folder: Pat
         )
 
 
-def create_mcp_server(config: Config, skills: Iterator[SkillData]) -> FastMCP:
-    """Create and configure MCP server based on config."""
-    if config.mode == Mode.SYSTEM_PROMPT:
-        instructions = _build_system_prompt_instructions(skills, config.skill_folder)
+def create_mcp_server(
+    mode: Mode, skills: Iterator[SkillData], skill_folder: Path
+) -> FastMCP:
+    """Create and configure MCP server based on mode."""
+    if mode == Mode.SYSTEM_PROMPT:
+        instructions = _build_system_prompt_instructions(skills, skill_folder)
         mcp = FastMCP(
             name="agent-skills-mcp",
             instructions=instructions,
@@ -83,6 +85,6 @@ def create_mcp_server(config: Config, skills: Iterator[SkillData]) -> FastMCP:
             name="agent-skills-mcp",
             instructions="",
         )
-        _register_tools(mcp, skills, config.skill_folder)
+        _register_tools(mcp, skills, skill_folder)
 
     return mcp

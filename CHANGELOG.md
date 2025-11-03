@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- CLI interface with typer for command-line argument support
+- `--skill-folder` option to specify skill directory path
+- `--mode` option to choose between tool and system_prompt modes
+- `--version` flag to display version information
+- Environment variable support for all CLI options
+
 ### Changed
 
 - Lowered Python requirement from >=3.13 to >=3.10

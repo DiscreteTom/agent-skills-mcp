@@ -24,6 +24,19 @@ Add to your MCP client configuration:
 
 > For Cursor, add the configuration to `.cursor/mcp.json` in your workspace to read from workspace's `skills` folder.
 
+### CLI Options
+
+```bash
+agent-skills-mcp --help
+```
+
+Available options:
+- `--skill-folder`: Path to folder containing skill markdown files (default: `skills`)
+- `--mode`: Operating mode - `tool` or `system_prompt` (default: `tool`)
+- `--version`: Show version and exit
+
+All options can also be set via environment variables (e.g., `SKILL_FOLDER`, `MODE`).
+
 ### Modes
 
 - `system_prompt`: Include skill information in MCP instructions (recommended if your agent regards MCP server instructions)

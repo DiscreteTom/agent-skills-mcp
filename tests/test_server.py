@@ -3,7 +3,7 @@
 from pathlib import Path
 from unittest.mock import Mock, patch
 
-from agent_skills_mcp.config import Config, Mode
+from agent_skills_mcp.enums import Mode
 from agent_skills_mcp.model import SkillData
 from agent_skills_mcp.server import (
     _build_system_prompt_instructions,
@@ -60,10 +60,9 @@ def test_create_mcp_server_system_prompt_mode(mock_fastmcp):
     mock_mcp = Mock()
     mock_fastmcp.return_value = mock_mcp
 
-    config = Config(skill_folder=Path("skills"), mode=Mode.SYSTEM_PROMPT)
     skills = [SkillData("test", "desc", "content", Path("test.md"))]
 
-    result = create_mcp_server(config, iter(skills))
+    result = create_mcp_server(Mode.SYSTEM_PROMPT, iter(skills), Path("skills"))
 
     mock_fastmcp.assert_called_once()
     call_args = mock_fastmcp.call_args
@@ -80,10 +79,9 @@ def test_create_mcp_server_tool_mode(mock_fastmcp):
     mock_mcp.tool.return_value = mock_tool_decorator
     mock_fastmcp.return_value = mock_mcp
 
-    config = Config(skill_folder=Path("skills"), mode=Mode.TOOL)
     skills = [SkillData("test", "desc", "test_content", Path("test.md"))]
 
-    result = create_mcp_server(config, iter(skills))
+    result = create_mcp_server(Mode.TOOL, iter(skills), Path("skills"))
 
     mock_fastmcp.assert_called_once()
     call_args = mock_fastmcp.call_args

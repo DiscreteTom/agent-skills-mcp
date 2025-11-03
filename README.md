@@ -5,7 +5,7 @@
 
 ## Usage
 
-### Full Usage
+### Full CLI Usage
 
 <details>
 
@@ -26,24 +26,32 @@ Options:
 
 </details>
 
-### Installation
+### Setup
 
-[![Add to Kiro](https://kiro.dev/images/add-to-kiro.svg)](kiro://kiro.mcp/add?name=skills&config=%7B%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22agent-skills-mcp%22%5D%2C%22env%22%3A%7B%22SKILL_FOLDER%22%3A%22skills%22%2C%22MODE%22%3A%22tool%22%7D%7D)
+First, put your skills in `~/skills`, e.g.
 
-Add to your MCP client configuration:
+```sh
+git clone https://github.com/anthropics/skills.git ~/skills
+```
+
+Then, add this to your MCP client configuration:
+
+[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=skills&config=eyJlbnYiOnsiU0tJTExfRk9MREVSIjoifi9za2lsbHMifSwiY29tbWFuZCI6InV2eCBhZ2VudC1za2lsbHMtbWNwIn0%3D)
+[![Add to Kiro](https://kiro.dev/images/add-to-kiro.svg)](kiro://kiro.mcp/add?name=skills&config=%7B%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22agent-skills-mcp%22%5D%2C%22env%22%3A%7B%22SKILL_FOLDER%22%3A%22~%2Fskills%22%7D%7D)
 
 ```json
 {
   "mcpServers": {
     "skills": {
       "command": "uvx",
-      "args": ["agent-skills-mcp"]
+      "args": ["agent-skills-mcp"],
+      "env": {
+        "SKILL_FOLDER": "~/skills"
+      }
     }
   }
 }
 ```
-
-> For Cursor, add the configuration to `.cursor/mcp.json` in your workspace to read from workspace's `skills` folder.
 
 ### Modes
 

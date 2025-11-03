@@ -10,6 +10,8 @@ from .enums import Mode
 from .scan import scan_skills
 from .server import create_mcp_server
 
+cli = typer.Typer(rich_markup_mode=None, add_completion=False)
+
 
 def version_callback(value: bool):
     if value:
@@ -17,6 +19,7 @@ def version_callback(value: bool):
         raise typer.Exit()
 
 
+@cli.command()
 def app(
     skill_folder: Annotated[
         str,
@@ -44,7 +47,7 @@ def app(
 
 def main():
     """Start the MCP server."""
-    typer.run(app)
+    cli()
 
 
 if __name__ == "__main__":

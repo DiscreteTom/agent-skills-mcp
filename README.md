@@ -5,6 +5,27 @@
 
 ## Usage
 
+### Full Usage
+
+<details>
+
+<summary><code>uvx agent-skills-mcp --help</code></summary>
+
+```sh
+Usage: agent-skills-mcp [OPTIONS]
+
+  Agent Skills MCP - Load Agent Skills for your agents
+
+Options:
+  --skill-folder TEXT          Path to folder containing skill markdown files
+                               \[env var: SKILL_FOLDER; default: skills]
+  --mode [tool|system_prompt]  Operating mode  \[env var: MODE; default: tool]
+  --version                    Show version and exit
+  --help                       Show this message and exit.
+```
+
+</details>
+
 ### Installation
 
 [![Add to Kiro](https://kiro.dev/images/add-to-kiro.svg)](kiro://kiro.mcp/add?name=skills&config=%7B%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22agent-skills-mcp%22%5D%2C%22env%22%3A%7B%22SKILL_FOLDER%22%3A%22skills%22%2C%22MODE%22%3A%22tool%22%7D%7D)
@@ -24,27 +45,9 @@ Add to your MCP client configuration:
 
 > For Cursor, add the configuration to `.cursor/mcp.json` in your workspace to read from workspace's `skills` folder.
 
-### CLI Options
-
-```bash
-agent-skills-mcp --help
-```
-
-Available options:
-- `--skill-folder`: Path to folder containing skill markdown files (default: `skills`)
-- `--mode`: Operating mode - `tool` or `system_prompt` (default: `tool`)
-- `--version`: Show version and exit
-
-All options can also be set via environment variables (e.g., `SKILL_FOLDER`, `MODE`).
-
 ### Modes
 
 - `system_prompt`: Include skill information in MCP instructions (recommended if your agent regards MCP server instructions)
 - `tool`: Register skills as MCP tools (fallback mode since many agents ignore MCP server instructions)
-
-### Environment Variables
-
-- `SKILL_FOLDER`: Path to folder containing skill markdown files (optional, defaults to `skills`)
-- `MODE`: Operating mode (optional, defaults to `tool`)
 
 ## [CHANGELOG](./CHANGELOG.md)

@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Lowered Python requirement from >=3.13 to >=3.10
 
+### Fixed
+
+- Fixed skill folder path expansion to properly handle `~` (home directory) paths
+
 ## [0.1.2] - 2025-10-20
 
 ### Fixed

@@ -40,8 +40,9 @@ def app(
     ] = None,
 ):
     """Agent Skills MCP - Load Agent Skills for your agents"""
-    skills = scan_skills(Path(skill_folder))
-    mcp = create_mcp_server(mode, skills, Path(skill_folder))
+    skill_folder_path = Path(skill_folder)
+    skills = scan_skills(skill_folder_path.expanduser().resolve())
+    mcp = create_mcp_server(mode, skills, skill_folder_path)
     mcp.run()
 
 

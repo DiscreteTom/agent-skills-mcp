@@ -40,7 +40,7 @@ class DefaultFileSystem:
         return path.read_text(encoding="utf-8")
 
     def glob_skills(self, folder: Path) -> Iterator[Path]:
-        return folder.rglob("SKILL.md")
+        return folder.rglob("SKILL.md", recurse_symlinks=True)
 
     def exists(self, path: Path) -> bool:
         return path.exists()

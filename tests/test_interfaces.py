@@ -29,6 +29,22 @@ def test_default_filesystem_glob_skills(tmp_path):
     assert all(f.name == "SKILL.md" for f in skill_files)
 
 
+def test_default_filesystem_glob_skills_follows_symlinks(tmp_path):
+    target_dir = tmp_path / "target"
+    target_dir.mkdir()
+    (target_dir / "SKILL.md").write_text("skill_in_target")
+
+    link_dir = tmp_path / "link"
+    link_dir.symlink_to(target_dir)
+
+    fs = DefaultFileSystem()
+    skill_files = list(fs.glob_skills(tmp_path))
+
+    assert len(skill_files) == 2
+    paths = {f.parent.name for f in skill_files}
+    assert paths == {"target", "link"}
+
+
 def test_default_filesystem_exists(tmp_path):
     test_file = tmp_path / "exists.txt"
     test_file.write_text("content")

@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Symlink support when searching for SKILL.md files
+
+### Changed
+
+- Upgraded minimum Python version from 3.10 to 3.13 (required for symlink support)
+
 ## [0.1.3] - 2025-11-03
 
 ### Added

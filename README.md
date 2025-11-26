@@ -34,6 +34,8 @@ First, put your skills in `~/skills`, e.g.
 git clone https://github.com/anthropics/skills.git ~/skills
 ```
 
+The server recursively searches for `SKILL.md` files and follows symlinks, allowing flexible skill organization.
+
 Then, add this to your MCP client configuration:
 
 [![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=skills&config=eyJlbnYiOnsiU0tJTExfRk9MREVSIjoifi9za2lsbHMifSwiY29tbWFuZCI6InV2eCBhZ2VudC1za2lsbHMtbWNwIn0%3D)

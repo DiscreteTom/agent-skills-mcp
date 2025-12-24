@@ -1,4 +1,4 @@
-# agent-skills-mcp - Load [Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills) for your agents
+# agent-skills-mcp - Load [Agent Skills](https://agentskills.io/home) for your agents
 
 [![PyPI - Version](https://img.shields.io/pypi/v/agent-skills-mcp)](https://pypi.org/project/agent-skills-mcp/)
 ![Codecov](https://img.shields.io/codecov/c/github/DiscreteTom/agent-skills-mcp)

@@ -3,6 +3,9 @@
 [![PyPI - Version](https://img.shields.io/pypi/v/agent-skills-mcp)](https://pypi.org/project/agent-skills-mcp/)
 ![Codecov](https://img.shields.io/codecov/c/github/DiscreteTom/agent-skills-mcp)
 
+> [!WARNING]
+> This Python implementation is deprecated. Please use the Rust implementation instead: https://github.com/DiscreteTom/agent-skills-mcp-rs
+
 ## Usage
 
 ### Full CLI Usage
